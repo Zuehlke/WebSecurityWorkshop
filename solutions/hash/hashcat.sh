@@ -1,0 +1,1 @@
+hashcat --username -o cracked.txt hashes.txt --show 10-million-password-list-top-1000000.txt

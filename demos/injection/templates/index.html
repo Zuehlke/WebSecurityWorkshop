@@ -1,0 +1,20 @@
+<head>
+    <title>Super Safe Login</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="login" method="post">
+        <input name="username" value="{{username}}" placeholder="Username" /></br>
+        <input name="password" placeholder="password"/>
+        <input type="submit"/>
+    </form>
+    <pre><code class="language-sql">{{sql}}</code></pre>
+    <p>{{msg}}</p>
+</body>
