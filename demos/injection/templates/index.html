@@ -9,10 +9,15 @@
 
 </head>
 <body>
+    <style>
+        .inp{
+            width: 400px;
+        }
+    </style>
     <h1>Login</h1>
     <form action="login" method="post">
-        <input name="username" value="{{username}}" placeholder="Username" /></br>
-        <input name="password" placeholder="password"/>
+        <input class="inp" name="username" value="{{username}}" placeholder="Username" /></br>
+        <input class="inp" name="password" placeholder="password"/>
         <input type="submit"/>
     </form>
     <pre><code class="language-sql">{{sql}}</code></pre>

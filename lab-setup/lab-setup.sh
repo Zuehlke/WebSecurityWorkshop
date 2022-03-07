@@ -1,19 +1,20 @@
 #!/bin/bash
+prefix="202203-"
 
 create_instance () {
-  az container create --resource-group web-sec-workshop --name $1 --image bkimminich/juice-shop --dns-name-label $1 --ports 3000 --cpu 0.5 --ip-address public --environment-variables "NODE_ENV=unsafe" -o none && echo "created: $1"
+  az container create --resource-group web-sec-workshop --name $prefix$1 --image bkimminich/juice-shop --dns-name-label $1 --ports 3000 --cpu 0.5 --ip-address public --environment-variables "NODE_ENV=unsafe" -o none && echo "created: $1"
 }
 
 delete_instance() {
-    az container delete --name $1 --resource-group web-sec-workshop -o none --yes && echo "deleted: $1"
+    az container delete --name $prefix$1 --resource-group web-sec-workshop -o none --yes && echo "deleted: $1"
 }
 
 start_instance() {
-    az container start --name $1 --resource-group web-sec-workshop -o none && echo "started: $1"
+    az container start --name $prefix$1 --resource-group web-sec-workshop -o none && echo "started: $1"
 }
 
 stop_instance() {
-    az container stop --name $1 --resource-group web-sec-workshop -o none && echo "stoped: $1"
+    az container stop --name $prefix$1 --resource-group web-sec-workshop -o none && echo "stoped: $1"
 }
 
 check_instance() {
@@ -31,6 +32,7 @@ for i in `seq -f "%02g" $2 $3`
 do
     
 name="z-web-sec-$i"
+echo "$name"
 
 if [[ "$1" == "delete" ]] ; then
     
