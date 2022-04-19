@@ -146,9 +146,8 @@ module.exports = function productReviews () {
 
 <details>
   <summary>❓ Hint 1</summary>
-Read the documentation of
-[`db.collection.update` documentation](https://www.mongodb.com/docs/manual/reference/method/db.collection.update/).
-and the [query operators documentation](https://www.mongodb.com/docs/manual/reference/operator/query/).
+<a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.update/">`db.collection.update` documentation</a>
+and the <a href="https://www.mongodb.com/docs/manual/reference/operator/query/">query operators documentation</a>.
 
 Which query allows you to change multiple reviews at the same time?
 </details>
