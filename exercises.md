@@ -146,6 +146,7 @@ module.exports = function productReviews () {
 
 <details>
   <summary>❓ Hint 1</summary>
+Read the documentation of
 <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.update/">`db.collection.update` documentation</a>
 and the <a href="https://www.mongodb.com/docs/manual/reference/operator/query/">query operators documentation</a>.
 
