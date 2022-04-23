@@ -22,7 +22,7 @@ There is another way: Use ZAP to find the request and replay it with a 0 value.
 
 <details>
   <summary>📚 Solution</summary>
-### Approach 1
+<h3>Approach 1</h3>
 
 - Visit `/#/contact`
 - Don't change the rating, enter some comment and solve the CAPTCHA
@@ -32,7 +32,17 @@ There is another way: Use ZAP to find the request and replay it with a 0 value.
 
 <img src="https://github.com/Zuehlke/WebSecurityWorkshop/blob/solutions/solutions/screenshots/zero-star-sol1.png?raw=true" alt="Screenshot that explains how to remove the disabled attribute of the button"/>
 
-### Approach 2
+<h3>Approach 2</h3>
+
+1. Open ZAP and the browser such that the traffic is routed through ZAP
+2. Visit the `/#/contact` site
+3. Walk the happy path and submit a non-zero rating
+4. Find the request that was triggered in the "History" when submitting the non-zero rating
+5. Right click on the entry and click on "Open/Resend with Request Editor..."
+6. Replace the submitted rating with 0 and send the request
+7. Congrats, you're done :)
+
+<img src="https://github.com/Zuehlke/WebSecurityWorkshop/blob/solutions/solutions/screenshots/zero-star-sol2.png?raw=true" alt="Screenshot that explains how to use ZAP to reply the message"/>
 
 </details>
 
@@ -49,6 +59,21 @@ When you order an item, you pay money. When you sell an item, you are being paid
 <details>
   <summary>❓ Hint 2</summary>
 Have you tried ordering a negative amount of items?
+</details>
+
+<details>
+  <summary>📚 Solution</summary>
+1. Open ZAP and the browser such that the traffic is routed through ZAP
+2. Put any item into the basket
+3. Have a look at your basket and increase the number of ordered items
+4. Find the request that was triggered when increasing the number of ordered items
+5. Resend the request with a negative number of items
+6. Reload the basked an verify that you now have a negative total price
+7. Proceed to checkout and cash in!
+
+<img src="https://github.com/Zuehlke/WebSecurityWorkshop/blob/solutions/solutions/screenshots/payback-time-sol1.png?raw=true" alt="Payback Time solution graphic: Request to reply"/>
+<img src="https://github.com/Zuehlke/WebSecurityWorkshop/blob/solutions/solutions/screenshots/payback-time-sol2.png?raw=true" alt="Payback Time solution graphic: Checkout"/>
+
 </details>
 
 
