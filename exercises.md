@@ -20,6 +20,22 @@ There is another way: Use ZAP to find the request and replay it with a 0 value.
     
 </details>
 
+<details>
+  <summary>📚 Solution</summary>
+### Approach 1
+
+- Visit `/#/contact`
+- Don't change the rating, enter some comment and solve the CAPTCHA
+- Right click on the submit button and inspect the element
+- Remove the `disabled="true"` attribute
+- Submit the form by clicking submit
+
+<img src="/../solutions/screenshots/zero-star-sol1.png" alt="Screenshot that explains how to remove the disabled attribute of the button"/>
+
+### Approach 2
+
+</details>
+
 
 ## Payback Time
 
