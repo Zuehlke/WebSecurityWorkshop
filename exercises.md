@@ -20,11 +20,6 @@ There is another way: Use ZAP to find the request and replay it with a 0 value.
     
 </details>
 
-<details>
-  <summary>📚 Solution</summary>
-Here is the solution...
-</details>
-
 
 ## Payback Time
 
@@ -156,7 +151,7 @@ Which query allows you to change multiple reviews at the same time?
 
 ## Null-Byte Injection
 
-Download `/ftp/package.json.bk`.
+Download `/ftp/package.json.bak`.
 Note node.js handles null-bytes differently than the underlying library which is written in C.
 
 <details>
@@ -242,3 +237,56 @@ Have you tried the following?
 
 Search for a websites with a CSP. How does the CSP of your favorite bank look like?
 
+
+## CSRF
+
+Change the name of a user by performing Cross-Site Request Forgery from another origin.
+
+- Make your own attacker web-site that changes a logged-in user's Juice Shop username when she/he visits your site.
+- Note: You need to use Firefox, because it does not treat cookies as `same-site=lax` per default.
+- Can you do it with a CORS request and an autosubmitting `<form>`?
+- Use a local file or `https://htmledit.squarefree.com` to simulate a different website.
+
+<details>
+  <summary>❓ Hint 1</summary>
+`POST /profile`
+</details>
+
+
+## Frontend Typosquatting
+
+[Inform the shop](http://localhost:3000/#/contact) about a typosquatting imposter that dug itself deep into the frontend (Mention the exact name of the culprit in the contact form).
+
+<details>
+  <summary>❓ Hint 1</summary>
+Inspect the package.json.bak from the <a href="#null-byte-injection">Null-Byte Injection exercise</a>.
+</details>
+
+
+## Vulnerable Library
+
+[Inform the shop](http://localhost:3000/#/contact) about a vulnerable library it is using (Mention the exact library name and version in your comment).
+
+<details>
+  <summary>❓ Hint 1</summary>
+Inspect the package.json.bak from the <a href="#null-byte-injection">Null-Byte Injection exercise</a>.
+</details>
+
+
+## Dependency Scanning
+
+Use Snyk or any other dependency scanner to analyze the Juice Shop's dependencies.
+
+- Are there any outdated packages?
+- How severe are the issues?
+
+
+## OWASP ZAP Scanning
+
+Use OWASP ZAP to perform an automated dynamic test of your Juice Shop.
+
+`docker run --net=host -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:3000`
+
+- What kind of vulnerabilities does it find?
+- Do you think it is useful?
+- If you are interested, try the full scan.
