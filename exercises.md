@@ -30,7 +30,7 @@ There is another way: Use ZAP to find the request and replay it with a 0 value.
 - Remove the `disabled="true"` attribute
 - Submit the form by clicking submit
 
-<img src="/../solutions/screenshots/zero-star-sol1.png" alt="Screenshot that explains how to remove the disabled attribute of the button"/>
+<img src="https://github.com/Zuehlke/WebSecurityWorkshop/blob/solutions/solutions/screenshots/zero-star-sol1.png?raw=true" alt="Screenshot that explains how to remove the disabled attribute of the button"/>
 
 ### Approach 2
 
