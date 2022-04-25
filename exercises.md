@@ -44,6 +44,7 @@ Reading the about us (`/#/about`) might nudge you in the right direction.
 
 <details>
   <summary>❓ Hint 1</summary>
+
 Robots are certainly disallowed to access confidential files.
 How would you tell google to hide a directory?
 </details>
@@ -55,6 +56,7 @@ You need some inspiration on what to buy. View another user's shopping basket.
 
 <details>
   <summary>❓ Hint 1</summary>
+
 Observe the HTTP traffic using ZAP when shopping. Is there a request with an interesting parameter that you could change in your favor?
 </details>
 
@@ -65,6 +67,7 @@ Privacy is important. Post a product review as another user or edit any user's e
 
 <details>
   <summary>❓ Hint 1</summary>
+
 Observe the HTTP traffic using ZAP while submitting a review for the "Apple Juice". Can you alter any interesting parameters when sending a request to `/rest/products/1/reviews`?
 </details>
 
@@ -75,11 +78,13 @@ Sometimes it is boring to be a normal user. Login as the administrator (admin@ju
 
 <details>
   <summary>❓ Hint 1</summary>
+
 User credentials are generally stored in a database, can you perform an injection that results in a positive query reply?
 </details>
 
 <details>
   <summary>❓ Hint 2</summary>
+
 Don't forget to comment out the trash after the injected commands.
 </details>
 
@@ -90,11 +95,13 @@ Data is power. Steal all user credentials by abusing the search functionality.
 
 <details>
   <summary>❓ Hint 0 (the endpoint)</summary>
+
 The vulnerable (legacy) search endpoint is located under the following path `/rest/products/search?q=<SEARCH QUERY>`.
 </details>
 
 <details>
   <summary>❓ Hint 1</summary>
+
 The endpoint is vulnerable to SQL injections.
 When exploiting a SQL injection, make sure that you know how to properly close the query.
 Start by crafting a simple query that doesn't result in an error (e.g. does `test';--` work, or are there for instance any open brackets left?)
@@ -102,16 +109,19 @@ Start by crafting a simple query that doesn't result in an error (e.g. does `tes
 
 <details>
   <summary>❓ Hint 2</summary>
+
 Exploit the SQLi by crafting an `UNION SELECT` query to join the data from another table to the results.
 </details>
 
 <details>
   <summary>❓ Hint 3</summary>
+
 Use the `sqlite_schema` table to extract the relevant table names.
 </details>
 
 <details>
   <summary>❓ Hint 4</summary>
+
 Use the `PRAGMA_TABLE_INFO('TABLE NAME GOES HERE')` table to extract the relevant column names.
 </details>
 
@@ -141,6 +151,7 @@ module.exports = function productReviews () {
 
 <details>
   <summary>❓ Hint 1</summary>
+
 Read the documentation of
 <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.update/">`db.collection.update` documentation</a>
 and the <a href="https://www.mongodb.com/docs/manual/reference/operator/query/">query operators documentation</a>.
@@ -261,6 +272,7 @@ Change the name of a user by performing Cross-Site Request Forgery from another 
 
 <details>
   <summary>❓ Hint 1</summary>
+
 Inspect the package.json.bak from the <a href="#null-byte-injection">Null-Byte Injection exercise</a>.
 </details>
 
@@ -271,6 +283,7 @@ Inspect the package.json.bak from the <a href="#null-byte-injection">Null-Byte I
 
 <details>
   <summary>❓ Hint 1</summary>
+
 Inspect the package.json.bak from the <a href="#null-byte-injection">Null-Byte Injection exercise</a>.
 </details>
 
