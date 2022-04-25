@@ -274,13 +274,15 @@ Inspect the package.json.bak from the <a href="#null-byte-injection">Null-Byte I
 Inspect the package.json.bak from the <a href="#null-byte-injection">Null-Byte Injection exercise</a>.
 </details>
 
-
-## Dependency Scanning
-
+  <details>
+  <summary>❓ Hint 2</summary>
 Use Snyk or any other dependency scanner to analyze the Juice Shop's dependencies.
 
 - Are there any outdated packages?
 - How severe are the issues?
+</details>
+
+
 
 
 ## OWASP ZAP Scanning
