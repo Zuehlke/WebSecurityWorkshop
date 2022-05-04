@@ -176,6 +176,39 @@ How can this be exploited, when the access verification happens in node.js?
   <summary>❓ Hint 2</summary>
 A url encoded null byte is represented as "%00", however, make sure you properly encode it when submitting the request.
 </details>
+  
+## SSRF
+
+You've learnt that the juice-shop administration runs an service on the same server as the juice-shop on port 8000 that is only available from the internal network. Download the file that is served under `/scans/0000-scan.png` by this service.
+
+<details>
+  <summary>❓ Hint 1</summary>
+
+If the juice-shop would access the file, it would make a call to the localhost, i.e. `http://127.0.0.1:8000/scans/0000-scan.png`
+
+</details>
+
+<details>
+  <summary>❓ Hint 2</summary>
+
+The profile picture looks like an ideal place to display scans.
+
+</details>
+  
+<details>
+  <summary>❓ Hint 3</summary>
+
+How could you bypass this check?
+```typescript
+function invalid_url(url: string): boolean {  // ssrf check
+  const bad_urls: string[] = ['http://127.0.0.1', 'https://127.0.0.1', 'http://localhost', 'https://localhost'];
+  return bad_urls.some(prefix => url.startsWith(prefix));
+}
+```
+
+</details>
+  
+
 
 
 ## Federated Authentication
