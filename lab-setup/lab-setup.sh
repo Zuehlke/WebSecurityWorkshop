@@ -1,8 +1,8 @@
 #!/bin/bash
-prefix="202203-"
+prefix="202205-"
 
 create_instance () {
-  az container create --resource-group web-sec-workshop --name $prefix$1 --image bkimminich/juice-shop --dns-name-label $1 --ports 3000 --cpu 0.5 --ip-address public --environment-variables "NODE_ENV=unsafe" -o none && echo "created: $1"
+  az container create --resource-group web-sec-workshop --name $prefix$1 --image gianlucafrei/juice-shop-workshop --dns-name-label $1 --ports 3000 --cpu 0.25 --ip-address public --environment-variables "NODE_ENV=unsafe" -o none && echo "created: http://$1.westeurope.azurecontainer.io:3000"
 }
 
 delete_instance() {
@@ -45,7 +45,6 @@ if [[ "$1" == "delete" ]] ; then
 
     delete_instance $name
 elif [[ "$1" == "check" ]]  ; then
-
     check_instance $name
 
 elif [[ "$1" == "start" ]]  ; then
@@ -56,11 +55,9 @@ elif [[ "$1" == "stop" ]]  ; then
 
 elif [[ "$1" == "create" ]]  ; then
     create_instance $name
-    sleep 3
-    check_instance $name
 
 else
-    echo "ERROR commend must be create or delete"
+    echo "ERROR command must be create or delete"
     exit 0
 fi
 
