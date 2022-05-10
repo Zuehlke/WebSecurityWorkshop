@@ -654,6 +654,8 @@ Change the name of a user by performing Cross-Site Request Forgery from another 
 
 <details>
   <summary>📚 Solution</summary>
+  
+The following two snippets execute the CSRF automatically.
 
 <h3>Approach 1</h3>
 
@@ -689,7 +691,15 @@ fetch("http://localhost:3000/profile", {
   <summary>❓ Hint 1</summary>
 Inspect the package.json.bak from the <a href="#null-byte-injection">Null-Byte Injection exercise</a>.
 </details>
+<details>
+  <summary>📚 Solution</summary>
 
+1. Inspect the package.json.bak from the <a href="#null-byte-injection">Null-Byte Injection exercise</a>.
+2. Go through the different dependencies and look them up on the internet
+3. By looking up epilogue-js` and visiting https://www.npmjs.com/package/epilogue-js you'll see the hint, that this is a bogous package (to raise awareness)
+4. By writing `epilogue-js` into the contact from and submitting it, you'll solve the challenge.
+
+</details>
 
 ## Vulnerable Library
 
