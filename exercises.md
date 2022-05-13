@@ -697,7 +697,7 @@ Inspect the package.json.bak from the <a href="#null-byte-injection">Null-Byte I
 1. Inspect the package.json.bak from the <a href="#null-byte-injection">Null-Byte Injection exercise</a>.
 2. Go through the different dependencies and look them up on the internet
 3. By looking up epilogue-js` and visiting https://www.npmjs.com/package/epilogue-js you'll see the hint, that this is a bogous package (to raise awareness)
-4. By writing `epilogue-js` into the contact from and submitting it, you'll solve the challenge.
+4. By writing `epilogue-js` into the contact form and submitting it, you'll solve the challenge.
 
 </details>
 
@@ -719,6 +719,22 @@ Use Snyk or any other dependency scanner to analyze the Juice Shop's dependencie
 - How severe are the issues?
 </details>
 
+<details>
+  <summary>📚 Solution</summary>
+
+
+<h3>Snyk</h3>
+
+1. Download and setup Snyk: https://docs.snyk.io/snyk-cli/install-the-snyk-cli  
+   `npm install snyk -g`
+2. Move the package.json.bak from the <a href="#null-byte-injection">Null-Byte Injection exercise</a> into a new folder and rename it to package.json.
+3. Run `npm install`
+4. Run `snyk test`
+5. Snyk lists all the vulnerable components!
+6. By writing `express-jwt 0.1.3` into the contact form and submitting it, you'll solve the challenge.
+<img src="https://github.com/Zuehlke/WebSecurityWorkshop/blob/solutions/solutions/screenshots/vulnerable-library-sol1.png?raw=true" alt="Snyk results extract: express-jwt is vulnerable"/>
+
+</details>
 
 
 ## OWASP ZAP Scanning
