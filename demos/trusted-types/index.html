@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title>Trusted Types Example</title>
+
+        <meta http-equiv="Content-Security-Policy" content="require-trusted-types-for 'script'; trusted-types myEscapePolicy mySanitizationPolicy dompurify">
+
+        <!-- Polyfill for Chrome < 83 and other Browsers -->
+        <script src="https://w3c.github.io/webappsec-trusted-types/dist/es5/trustedtypes.build.js"></script>
+
+        <!-- Dompurify -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.8/purify.min.js"></script>
+
+    </head>
+    <body>
+
+        <h1>Trusted Types Example</h1>
+
+        <h4>Added with Trusted Types: Encode</h4>
+        <div id="div1">Not added</div>
+
+        <h4>Added with Trusted Types: Sanitize</h4>
+        <div id="div2">Not added</div>
+        
+        <h4>Added without Trusted Types:</h4>
+        <div id="div3">Not added</div>
+
+        <h4>Code:</h4>
+        <code id="code"></code>
+
+        <script>
+
+            function htmlEscape(str){
+                return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            }
+
+            function htmlSanitize(str){
+                return DOMPurify.sanitize(str);
+            }
+
+            var untrustedHtml = "<p>This is a <b>untrusted</b> html string<img src=x onerror=console.log('xss')>";
+
+            // Create Trusted Types Policy
+            const escapeHTMLPolicy = trustedTypes.createPolicy("myEscapePolicy", {
+                createHTML: (string) => htmlEscape(string)
+            });
+
+            const sanitizeHTMLPolicy = trustedTypes.createPolicy("mySanitizationPolicy", {
+                createHTML: (string) => htmlSanitize(string)
+            });
+
+            // With trusted types Encode
+            let el1 = document.getElementById("div1");
+            const escaped = escapeHTMLPolicy.createHTML(untrustedHtml);
+            //Html is added because escaped is a instance of a trusted type
+            console.log(escaped instanceof TrustedHTML);
+            el1.innerHTML = escaped;
+
+            // With trusted types Sanitize
+            let el2 = document.getElementById("div2");
+            const sanitized = sanitizeHTMLPolicy.createHTML(untrustedHtml);
+            //Html is added because escaped is a instance of a trusted type
+            console.log(sanitized instanceof TrustedHTML);
+            el2.innerHTML = sanitized;
+
+            // Without trusted types
+            // This is not safe and blocked by require trusted types
+            let el3 = document.getElementById("div3");
+            el3.innerHTML = untrustedHtml;
+            console.log(untrustedHtml instanceof TrustedHTML);
+
+        </script>
+        <script>
+
+            // Show code
+            var code = document.documentElement.innerHTML;
+            // No trusted type needed because innerText is safe
+            document.getElementById("code").innerText = code;
+        </script>
+
+
+    </body>
+</html>
