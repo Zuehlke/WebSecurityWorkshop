@@ -291,7 +291,7 @@ Change the name of a user by performing Cross-Site Request Forgery from another 
 - Make your own attacker web-site that changes a logged-in user's Juice Shop username when she/he visits your site.
 - Note: You need to use Firefox, because it does not treat cookies as `same-site=lax` per default.
 - Can you do it with a CORS request and an autosubmitting `<form>`?
-- Use a local file or `https://htmledit.squarefree.com` to simulate a different website.
+- Use `http://htmledit.squarefree.com` (make sure it is `http`) or a local file to simulate a different website.
 
 <details>
   <summary>❓ Hint 1</summary>
