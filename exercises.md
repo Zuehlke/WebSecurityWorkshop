@@ -241,7 +241,7 @@ The weird option is the none algorithm ;)
 
 ## DOM XSS
 
-Perform a DOM XSS attack with the following payload: `<iframe src="javascript:alert(`xss`)">`.
+Perform a DOM XSS attack with the following payload: `<iframe src="javascript:alert('xss')">`.
 
 <details>
   <summary>❓ Hint 1</summary>
