@@ -401,7 +401,7 @@ We have to urlencode the % properly, then you are able to bypass the access cont
 
 </details>
 
-## SSRF
+## Secret Password List
 
 There is a very interesting file at `/ftp/password-list.png` but apparently only localhost can access it. Can you still get the file?
 
