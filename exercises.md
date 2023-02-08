@@ -177,21 +177,21 @@ How can this be exploited, when the access verification happens in node.js?
 A url encoded null byte is represented as "%00", however, make sure you properly encode it when submitting the request.
 </details>
   
-## SSRF
+## Secret Password List
 
-You've learnt that the juice-shop administration runs an service on the same server as the juice-shop on port 8000 that is only available from the internal network. Download the file that is served under `/scans/0000-scan.png` by this service.
+There is a very interesting file at `/ftp/password-list.png` but apparently only localhost can access it. Can you still get the file?
 
 <details>
   <summary>❓ Hint 1</summary>
 
-If the juice-shop would access the file, it would make a call to the localhost, i.e. `http://127.0.0.1:8000/scans/0000-scan.png`
+If the juice-shop would access the file, it would make a call to the localhost, i.e. `http://localhost:3000/ftp/password-list.png`
 
 </details>
 
 <details>
   <summary>❓ Hint 2</summary>
 
-The profile picture looks like an ideal place to display scans.
+The profile picture looks like an ideal place to display scans. How are the pictures loaded when you enter a url?
 
 </details>
   
