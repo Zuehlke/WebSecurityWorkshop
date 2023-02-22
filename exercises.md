@@ -256,7 +256,7 @@ Perform a (blind) persistent XSS attack bypassing a client-side security mechani
 - The admin can see a list of all users on `/#/administration`
 - Admin login: admin@juice-sh.op / admin123
 
-Can you extract the cookies and send it to you (https://requestbin.net/ might be helpful)?
+Can you extract the cookies and send it to you (https://requestbin.com/ might be helpful (use a public bin without a login))?
 
 <details>
   <summary>❓ Hint 1</summary>
