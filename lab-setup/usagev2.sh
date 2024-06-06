@@ -26,4 +26,4 @@ sudo certbot certonly --manual --preferred-challenges=dns -d "*.donttrustmyinput
 sudo cp /etc/letsencrypt/live/donttrustmyinput.com/fullchain.pem fullchain.pem
 sudo cp /etc/letsencrypt/live/donttrustmyinput.com/privkey.pem privkey.pem
 sudo cat fullchain.pem privkey.pem > combined.pem
-# Manually upload combined to Azure
+# Manually upload combined to Azure (In Container Apps Environments under Custom DNS suffix)
