@@ -335,7 +335,7 @@ Use Snyk or any other dependency scanner to analyze the Juice Shop's dependencie
 
 Use OWASP ZAP to perform an automated dynamic test of your Juice Shop.
 
-`docker run --net=host -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:3000`
+`docker run --net=host -t zaproxy/zap-stable zap-baseline.py -t {URL}`
 
 - What kind of vulnerabilities does it find?
 - Do you think it is useful?
